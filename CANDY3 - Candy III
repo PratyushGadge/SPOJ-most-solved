@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+int main(){
+
+	long long n;
+	cin>>n;
+	
+	while(n--){
+		long long op = 0;
+		long long st;
+		cin>>st;
+		
+		for(long long i = 0;i<st;i++){
+			long long in;
+			cin>>in;
+			op = (op + in%st)%st;
+		}
+		
+		if(op){cout<<"NO"<<"\n";}
+		else{cout<<"YES"<<"\n";}
+	}
+}
