@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int cti(char c){return c-'0';}
+
+int dec(long long int op[],string &s){
+	op[0] = 1;
+	if(s.length()>1){
+		if(10*cti(s[0]) + cti(s[1]) <=26 && s[1]!='0'){op[1] = 2;}
+		else{op[1] = 1;}
+	}
+	for(int i = 2;i<s.length();i++){
+
+		op[i] = op[i-1];
+		if(s[i] == '0'){op[i] = op[i-2];}
+		if( 10*cti(s[i-1]) + cti(s[i]) <=26 && s[i]!='0' && s[i-1]!='0'){
+			op[i] = op[i-1]+ op[i-2] ;
+		}
+	}
+	return op[s.length()-1];
+}
+
+
+int main(){
+
+	string s;
+	cin>>s;
+	while(s!="0"){
+		long long int op[s.length()];
+		cout<<dec(op,s)<<"\n";
+		cin>>s;		
+	}	
+}
