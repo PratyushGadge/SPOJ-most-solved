@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+const int N = 1e4+7;
+
+
+int main(){
+
+	vector<int> v;
+	for(int i = 191;i<1000;i++){
+		if((i*i*i)%1000 == 888){v.push_back(i);}
+	}
+	int t;
+	cin>>t;
+	while(t--){
+		ll k;
+		cin>>k;
+		ll d = k/(v.size());
+		ll r = k%(v.size());
+		if(r==0){r = v.size(); d--;}
+		cout<<d*1000 + v[r-1]<<"\n";
+		
+	}
+}
