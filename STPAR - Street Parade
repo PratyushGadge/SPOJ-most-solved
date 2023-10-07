@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+const int N = 1e4+7;
+
+vector<int> arr[N];
+int dp[N];
+
+
+
+int main(){
+
+	int n;
+	cin>>n;
+	while(n){
+		vector<int> ip;
+		vector<int> op; op.push_back(0);
+		vector<int> side;
+		for(int i = 0;i<n;i++){int j;cin>>j; ip.push_back(j);}
+		reverse(ip.begin(),ip.end());
+		for(int i = 0;i<=2*n;i++){
+			if(ip.back() == op.back()+1){op.push_back(ip.back());ip.pop_back();}
+			else if(!side.empty() && side.back() == op.back()+1){op.push_back(side.back()); side.pop_back();}
+			else if(!ip.empty()){side.push_back(ip.back()); ip.pop_back();}
+		}
+		if(op.back() == n){cout<<"yes\n";}
+		else{cout<<"no\n";}
+		cin>>n;
+	}
+
+}
