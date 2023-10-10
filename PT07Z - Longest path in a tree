@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+const int N = 1e4+7;
+
+
+bool ord(int i1,int i2){
+	return i1>i2;
+}
+
+vector<int> l[N];
+vector<int> arr[N];
+
+int maxl(int p,int i){
+	
+	if(arr[i].size()==1 && arr[i][0] == p){l[i].push_back(0);return 0;}
+	if(l[i].size() > 0){return l[i][0];}
+	for(int j:arr[i]){
+		if(j == p){continue;}
+		l[i].push_back(maxl(i,j) + 1);
+	}
+	l[i].push_back(0);
+	sort(l[i].begin(),l[i].end(),ord);
+	return l[i][0];
+	
+}
+
+int main(){
+
+	int n;
+	cin>>n;
+	for(int i = 1;i<n;i++){
+		int a,b;
+		cin>>a>>b;
+		arr[a].push_back(b);
+		arr[b].push_back(a);
+	}
+	int t = maxl(0,1);
+	
+	int maxi = 0;
+	for(int i = 1;i<=n;i++){
+		if(l[i].size()>1)maxi = max(l[i][0] + l[i][1],maxi);
+	}
+	cout<<maxi<<"\n";
+	
+}
