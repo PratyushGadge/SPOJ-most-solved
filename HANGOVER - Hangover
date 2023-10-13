@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const double N = 1e-6;
+
+
+bool ord(int i1,int i2){
+	return i1>i2;
+}
+
+int main(){
+	
+	float c;
+	cin>>c;
+	while(c){
+		float i = 0.5;
+		float op = 1;
+		if(c<=0.5){cout<<op<<" card(s)\n";cin>>c;continue;}
+		while(c>i){
+			op++;
+			i += 1/(op+1);
+		}
+		cout<<op<<" card(s)\n";
+		cin>>c;
+	}
+}
