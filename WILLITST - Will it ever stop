@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const float N = 1e-6;
+
+
+bool ord(int i1,int i2){
+	return i1>i2;
+}
+
+int main(){
+	
+	ll n;
+	cin>>n;
+	while(n!=0){
+		if(n&1 == 1 && n>>1 ==0){cout<<"TAK";return 0;}
+		else if(n&1 == 1 && n>>1 !=0){cout<<"NIE";return 0;}
+		n = n>>1;
+	}
+	cout<<"TAK";
+}
