@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const float N = 1e-6;
+
+
+bool ord(int i1,int i2){
+	return i1>i2;
+}
+
+
+
+int main(){
+
+	int t;
+	cin>>t;
+	for(int k = 1;k<=t;k++){
+
+		int st,f;
+		cin>>st>>f;
+		int arr[f];
+		for(int i = 0;i<f;i++){
+			cin>>arr[i];
+		}
+		sort(arr,arr+f,ord);
+		int maxs = 0;
+		int op = 0;
+		for(int i:arr){
+			if(maxs>=st){break;}
+			maxs += i;
+			op++;
+		}
+		
+		cout<<"Scenario #"<<k<<":\n";
+		if(maxs<st){cout<<"impossible\n\n";}
+		else{cout<<op<<"\n\n";}
+
+	}	
+
+}
