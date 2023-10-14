@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const float N = 1e-6;
+
+
+bool ord(int i1,int i2){
+	return i1>i2;
+}
+
+
+
+int main(){
+
+	int t;
+	cin>>t;
+	while(t--){
+		int ng,nm;
+		cin>>ng>>nm;
+		int gm = 0;
+		for(int i = 0;i<ng;i++){
+			int n;
+			cin>>n;
+			gm = max(gm,n);
+		}
+		int mgm = 0;
+		for(int i = 0;i<nm;i++){
+			int n;
+			cin>>n;
+			mgm = max(mgm,n);
+		}
+		if(ng == 0 && nm == 0){cout<<"uncertain\n";}
+		if(gm>=mgm){cout<<"Godzilla\n";}
+		else{cout<<"MechaGodzilla\n";}
+	}	
+
+}
