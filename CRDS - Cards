@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const int N = 1e6 + 7;
+
+
+bool ord(int i1,int i2){
+	return i1>i2;
+}
+
+bool bs(ll h, ll m, ll *arr, ll n){
+	
+	ll op = 0;
+	for(ll i = 0;i<n;i++){
+		if(arr[i]>=h){op+= arr[i] - h;}	
+	}
+	if(op>=m){return true;}
+	return false;
+}
+
+ll s[N];
+
+int main(){
+
+	ll t;
+	cin>>t;
+	ll op = 0;
+	for(ll i = 0;i<N;i++){
+		op += i * 3;
+		s[i] = op - i;
+	}
+	while(t--){
+		ll n;
+		cin>>n;
+		cout<<s[n]%N<<"\n";
+	}
+
+}
