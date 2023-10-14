@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const float N = 1e-6;
+
+
+bool ord(int i1,int i2){
+	return i1>i2;
+}
+
+void setv(int i,int p,vector<int> b[], int visited[], int n){
+	if(visited[i] != 0){return;}
+	visited[i] = -1*visited[p];
+	if(b[i].size() == 0){return;}
+	for(int j:b[i]){ setv(j,i,b,visited,n); }
+}
+
+int main(){
+
+	int k;
+	cin>>k;
+	if(k == 0){cout<<"Scenario #"<<k<<":\nNo suspicious bugs found!\n"; return 0;}
+	for(int t = 1;t<=k;t++){
+
+		int n, intr;
+		cin>>n>>intr;
+		if(n == 1 && intr == 0){cout<<"Scenario #"<<t<<":\nNo suspicious bugs found!\n";continue;}
+		else if(n == 1 && intr == 1){cout<<"Scenario #"<<t<<":\nSuspicious bugs found!\n";continue;}
+		int visited[n+1] = {}; visited[0] = 1;
+		vector<int> b[n+1];
+		for(int i = 0;i<intr;i++){
+			int a,c;
+			cin>>a>>c;
+			b[a].push_back(c);
+			b[c].push_back(a);
+		}
+		
+		for(int i = 1;i<=n;i++){
+			setv(i,0,b,visited,n);
+		}
+		bool ch = true;
+		for(int i = 1;i<n;i++){
+			for(int j:b[i]){
+				if(visited[i] == visited[j]){
+					cout<<"Scenario #"<<t<<":\nSuspicious bugs found!\n";
+					ch = false;
+					break;
+				}
+			}
+			if(!ch){break;}
+		}
+		if(ch){cout<<"Scenario #"<<t<<":\nNo suspicious bugs found!\n";}
+	}
+}
