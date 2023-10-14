@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const float N = 1e-6;
+
+
+bool ord(int i1,int i2){
+	return i1>i2;
+}
+
+bool bs(ll h, ll m, ll *arr, ll n){
+	
+	ll op = 0;
+	for(ll i = 0;i<n;i++){
+		if(arr[i]>=h){op+= arr[i] - h;}	
+	}
+	if(op>=m){return true;}
+	return false;
+}
+
+int main(){
+
+	ll n,m;
+	cin>>n>>m;
+	ll arr[n];
+	ll maxh = 0;
+	for(ll i = 0;i<n;i++){cin>>arr[i];maxh = max(maxh,arr[i]);}
+	ll l = 0,r = maxh;
+	while(r-l>1){
+		ll h = (l+r)/2;
+		if(bs(h,m,arr,n)){l = h;}
+		else{r = h;}
+	}
+	if(bs(r,m,arr,n)){cout<<r<<"\n";}
+	else if(bs(l,m,arr,n)){cout<<l<<"\n";}
+
+}
