@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const int N = 1e7+9;
+
+ll arr[N];
+
+void findv(int n, int index){
+    
+    int hi = index; int lo = 2;
+    while(hi-lo>1){
+        int m = (hi+lo)/2;
+        if(arr[m] <= n){lo = m;}
+        else{hi = m;}
+    }
+    
+    ll num = n-arr[lo] + 1;
+    ll d = lo - num;
+    
+    cout<<"TERM "<<n<<" IS ";
+    if(lo%2 != 0){cout<<num<<"/"<<d<<"\n";}
+    else{cout<<d<<"/"<<num<<"\n";}
+    
+}
+
+int main(){
+
+    arr[2] = 1;
+    arr[3] = 2;
+    arr[4] = 4; arr[5] = 7;
+    int index = 5;
+    while(arr[index]<=N){
+        index++;
+        arr[index] = arr[index-1] + index - 2;
+    }
+    
+    int t;
+    cin>>t;
+    while(t--){
+        int n;
+        cin>>n;
+        findv(n,index);
+    }
+}
