@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const int N = 1e7+9;
+
+ll arr[N];
+
+int main(){
+
+    int t;
+    cin>>t;
+    while(t--){
+        ll f,l,s;
+        cin>>f>>l>>s;
+        ll n = (2*s)/(f+l);
+        ll mid = n/2;
+        ll d = (l-f)/(n-5);
+        ll a = f - 2*d;
+        cout<<n<<"\n";
+        ll op = a;
+        for(ll i = 0;i<n;i++){cout<<op+i*d<<" ";}cout<<"\n";
+    
+    }
+}
