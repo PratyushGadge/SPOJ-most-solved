@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 1e5+9;
+const double pi = 3.1415926536;
+
+
+
+int main(){
+
+    int l;
+    cin>>l;
+    
+    if(l%10 == 0){cout<<2; return 0;}
+    else{cout<<1<<"\n"; cout<<l%10;}
+    
+}
