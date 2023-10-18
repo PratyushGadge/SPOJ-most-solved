@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 1e5+9;
+
+int gb(int g,int s){
+	int op = g/(s+1);
+	g = g%(s+1);
+	if(g){op++;}
+	return op;
+}
+
+int main(){
+
+    int g,b;
+    cin>>g>>b;
+    while(g!=-1){
+    	
+    	cout<<gb(max(g,b),min(g,b))<<"\n";
+    	cin>>g>>b;
+    }
+    
+}
