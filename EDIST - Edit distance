@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 1e4+9;
+
+int arr[N][N];
+
+int dp(int n,int m,string &a,string &b){
+    if(n<0 && m<0){return 0;}
+    if(n<0){return m + 1;}
+    if(m<0){return n + 1;}
+    if(arr[n][m]){return arr[n][m];}
+    int mini;
+    if(a[n] == b[m]){mini = dp(n-1,m-1,a,b);}
+    else mini = min( min(dp(n,m-1,a,b),dp(n-1,m-1,a,b)) , dp(n-1,m,a,b) ) + 1;
+    return arr[n][m] = mini;
+}
+
+int main(){
+
+    int t;
+    cin>>t;
+    while(t--){
+        memset(arr,0,sizeof(arr));
+        string a,b;
+        cin>>a>>b;
+        cout<<dp(a.length()-1,b.length()-1,a,b)<<"\n";
+    }
+    
+}
