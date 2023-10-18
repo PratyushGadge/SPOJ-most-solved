@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 1e6+9;
+
+ll arr[N];
+
+int sti(string s){
+    int op = 0;
+    for(char i:s){
+        op = op * 10 + (i-'0');
+    }
+    return op;
+}
+
+string its(int n){
+    string op;
+    while(n){
+        op.push_back(char(n%10 +'0'));
+        n /= 10;
+    }
+    reverse(&op[0],&op[0] + op.length());
+    return op;
+}
+
+int main(){
+
+    int t;
+    cin>>t;
+    while(t--){
+        string a,b,c,d,e;
+        cin>>a>>b>>c>>d>>e;
+        int a1,c1,e1;
+        if(a.find("machula") != -1){
+            a1 = sti(e) - sti(c);
+            a = its(a1);
+        }
+
+        else if(c.find("machula") != -1){
+            c1 = sti(e) - sti(a);
+            c = its(c1);
+        }
+        
+        else if(e.find("machula") != -1){
+            e1 = sti(a) + sti(c);
+            e = its(e1);
+        }
+        
+        cout<<a<<" + "<<c<<" = "<<e<<"\n";
+
+        
+    }
+    
+}
