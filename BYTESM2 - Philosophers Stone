@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 0;
+
+int get_val(int r,int c, int c_size,int *arr){
+    return *(( arr + r * c_size ) + c);
+}
+
+void set_val(int value,int r,int c,int c_size,int *arr){
+    *(( arr + r * c_size ) + c) = value;   
+}
+
+int ps(int r,int c, int*arr, int*dp,int R, int C){
+    if(get_val(r,c,C,dp)){return get_val(r,c,C,dp);}
+    if(r == R-1){
+        int k =  get_val(r,c,C,arr);
+        set_val(k,r,c,C,dp);
+        return k;
+    }
+    
+    int v = ps(r+1,c,arr,dp,R,C);
+    if(c < C-1){v = max(v , ps(r+1,c+1,arr,dp,R,C) );}
+    if(c>0){v = max(v , ps(r+1,c-1,arr,dp,R,C) );}
+    
+    v += get_val(r,c,C,arr);
+ 
+    set_val(v,r,c,C,dp);
+    return v;
+}
+
+int main(){
+
+    int t;
+    cin>>t;
+    while(t--){
+        int r,c;
+        cin>>r>>c; 
+        
+        int arr[r][c];
+        int dp[r][c] = {};
+        
+        for(int i = 0;i<r;i++){
+            for(int j = 0;j<c;j++){
+                cin>>arr[i][j];
+            }
+        }
+    
+        int op = 0;
+        for(int i=0;i<c;i++){
+            op = max( ps(0,i,(int*)arr,(int*)dp,r,c) , op );
+        }
+        
+        cout<<op<<"\n";
+    }
+    
+    
+}
