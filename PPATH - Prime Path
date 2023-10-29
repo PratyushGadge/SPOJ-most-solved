@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 1e4;
+bool prime[N];
+
+int sti(string s){
+    return (int(s[3]) - int('0')) + (int(s[2]) - int('0'))*10 + (int(s[1]) - int('0'))*100 + (int(s[0]) - int('0'))*1000;
+}
+
+int bfs(vector<string> v, int op, string &end, bool *visited){
+    
+    vector<string> b;
+    for(string s:v){
+        if(s == end){return op;}
+        for(int i = 3;i>=0;i--){
+            for(int j = 0;j<=9;j++){
+                if(i == 0 && j == 0){continue;}
+                string st = s;
+                st[i] = char(j+'0');
+                int no = sti(st);
+                
+                //cout<<no<<" ";
+                if(prime[no] && !visited[no]){b.push_back(st); visited[no] = true;}
+            }
+        }
+    }
+    if(b.size() == 0){return -1;}
+    return bfs(b,op+1,end,visited);
+    
+}
+
+int main(){
+
+    memset(prime,true,sizeof(prime));
+    
+    for(int i = 2;i*i<N;i++){
+        for(int j = i*i ; j<N ; j = j+i){
+            prime[j] = false;
+        }
+    }
+      
+    int t;
+    cin>>t;
+    while(t--){
+        
+        bool visited[N] = {};
+        string s,e;
+        cin>>s>>e;
+        vector<string> v;
+        v.push_back(s);
+        visited[sti(s)] = true;
+        int op = 0;
+        
+        int ret = bfs(v,op,e,visited);
+        if(ret == -1){cout<<"Impossible\n";}
+        else{cout<<ret<<"\n";}
+        
+    }
+       
+}
