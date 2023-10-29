@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 0;
+
+int dv(int i,int j, int n,int *arr){
+    return *((arr+i*n) + j);
+}
+
+void sv(int v,int i,int j,int n,int *arr){
+    *((arr+i*n) + j) = v;   
+}
+
+int pal(int l,int r,string &s,int *dp){
+    if(l >= r){return 0;}
+    if(dv(l,r,s.length(),dp)){
+        return dv(l,r,s.length(),dp);
+    }
+    if(s[l] == s[r]){return pal(l+1,r-1,s,dp);}
+    int v = min( pal(l,r-1,s,dp) , pal(l+1,r,s,dp) ) + 1;
+    sv(v,l,r,s.length(),dp);
+    return v;
+    
+}
+
+int main(){
+
+    int t;
+    cin>>t;
+    while(t--){
+        string s;
+        cin>>s;
+        
+        int dp[s.length()][s.length()] = {};
+        cout<<pal(0,s.length()-1,s,(int*)dp)<<"\n";
+        
+    }
+    
+      
+}
