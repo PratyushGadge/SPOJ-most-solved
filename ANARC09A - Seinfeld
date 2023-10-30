@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 0;
+
+
+
+int main(){
+
+    string s;
+    cin>>s;
+    int ctr = 1;
+    
+    while(s[0]!='-'){
+    
+        int top = -1;
+        vector<char> st;
+        for(char c:s){
+            st.push_back(c);
+            top++;
+            if(top>0){ if(st[top] == '}' && st[top-1] == '{'){st.pop_back();st.pop_back();top -= 2;} }
+        }
+        
+        int op = 0;
+        while(top>0){
+            
+            if(st[top] == st[top-1]){op++;}
+            else{op+=2;}
+            top -= 2;
+
+        }
+        
+        cout<<ctr<<". "<<op<<"\n"; 
+        
+        ctr++;
+    
+        cin>>s;
+    }
+      
+}
