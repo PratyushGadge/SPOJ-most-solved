@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 0;
+
+
+
+int main(){
+
+    int n;
+    cin>>n;
+    while(n != -1){
+    	n--;
+    	if(n == 0){cout<<"Y\n"; cin>>n; continue;}
+    	if(n%6 != 0){cout<<"N\n"; cin>>n; continue;}
+    	int t = n/6;
+    	t = 8*t+1;
+    	float f = sqrt(t);
+    	if(floor(f) == f){cout<<"Y\n";}
+    	else{cout<<"N\n";}
+    	cin>>n;
+    	
+    }
+      
+}
