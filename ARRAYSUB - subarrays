@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const int N = 0;
+
+struct segmenttree{
+    int n;
+    vector<int> st;
+    
+    void init(int _n){
+        this->n = _n;
+        st.resize(4*n,0);
+    }
+    
+    void build(int start, int ending ,int node ,vector<int> &v){
+        if(start == ending){st[node] = v[start]; return;}
+        
+        int mid = (start+ending)/2;
+        build(start,mid,2*node + 1, v);
+        build(mid+1,ending ,2*node + 2,v);
+        
+        st[node] = max(st[node*2 +1] , st[node*2 + 2]);
+    }
+    
+    int query(int start , int ending ,int l ,int r,int node){
+        
+        if(start>r || ending <l){return 0;}
+        if(start>=l && ending<=r){return st[node];}
+        int mid = (start+ ending)/2;
+        return max(query(start,mid,l,r,2*node +1) , query(mid+1,ending ,l,r,2*node + 2));
+    }
+    
+    void build(vector<int> &v){
+        build(0,n-1,0,v);
+    }
+    
+    int query(int l,int r){
+        return query(0,n-1,l,r,0);
+    }
+        
+};
+
+
+int main(){
+    
+    segmenttree seg;
+    int n; cin>>n;
+    vector<int> v;
+    for(int i = 0;i<n;i++){int val; cin>>val; v.push_back(val);}
+    int k; cin>>k;
+    
+    seg.init(n);
+    seg.build(v);
+    int ptr1 = 0, ptr2 = k-1;
+    while(ptr2!=n){
+        cout<<seg.query(ptr1,ptr2)<<" ";
+        ptr1++; ptr2++;
+    }
+    
+}
