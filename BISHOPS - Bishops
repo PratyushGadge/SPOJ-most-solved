@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 0;
+
+string tx(string a){
+
+    reverse(a.begin(),a.end());
+    int car = 0;
+    for(int i = 0;i<a.length();i++){
+        
+        int v = (a[i]-'0')*2;        
+        a[i] = (v + car)%10 + '0';
+        //cout<<a[i]<<" ";
+        car = v/10; 
+    }
+    if(car!=0){a.push_back(char(car+'0'));}
+    reverse(a.begin(),a.end());
+    
+    
+    return a;
+}
+
+string min1(string a){
+    
+    reverse(a.begin(),a.end());
+    for(int i = 0;i<a.length();i++){
+        if(a[i] !='0'){a[i] = char((a[i]-'0')-1 + '0'); break;}
+        else{a[i] = '9';}
+    }
+    reverse(a.begin(),a.end());
+    return a;
+    
+}
+
+int main(){
+
+    string s;
+    while(cin>>s){
+        if(s=="1"){cout<<1<<"\n"; continue;}
+        cout<<tx(min1(s))<<"\n";
+    }
+      
+}
