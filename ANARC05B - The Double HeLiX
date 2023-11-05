@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 0;
+
+int findv(int val,int l,int r,int *arr){
+    
+    while(r-l>1){
+        int m = (l+r)/2;
+        if(val<arr[m]){r = m;}
+        else{l = m;}
+    }
+    if(arr[l] == val){return l;}
+    if(arr[r] == val){return r;}
+    return -1;
+    
+}
+
+int main(){
+
+    int al;
+    cin>>al;
+        
+    while(al){
+        int a[al];
+        for(int i = 0;i<al;i++){cin>>a[i];}
+        
+        int bl;
+        cin>>bl;
+        int b[bl];
+        for(int i = 0;i<bl;i++){cin>>b[i];}
+        
+        vector<pair<int,int>> v;
+        for(int i = 0;i<al;i++){
+            int val = findv(a[i],0,bl-1,b);
+            if(val != -1){v.push_back({i,val});}
+        }
+        v.push_back({al-1,bl-1});
+        
+        for(int i = 1;i<al;i++){a[i] += a[i-1];}
+        for(int i = 1;i<bl;i++){b[i] += b[i-1];}
+
+        int op = max(a[v[0].first],b[v[0].second]);
+        
+        for(int i = 1;i<v.size(); i++){
+            int av = a[v[i].first]-a[v[i-1].first];
+            int bv = b[v[i].second]-b[v[i-1].second];
+            op += max(av,bv);
+            
+        }
+        cout<<op<<"\n";
+        cin>>al;
+    }
+    
+}
