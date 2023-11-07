@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 0;
+
+
+
+int main(){
+
+    int a,d;
+    cin>>a>>d;
+    while(a|d){
+        int arra[a];
+        int arrd[d];
+        for(int i = 0;i<a;i++){cin>>arra[i];}
+        for(int i = 0;i<d;i++){cin>>arrd[i];}
+        sort(arra,arra+a); sort(arrd,arrd+d);
+        if(arra[0]<arrd[1]){cout<<"Y\n";}
+        else{cout<<"N\n";}
+        cin>>a>>d;
+    }
+}
