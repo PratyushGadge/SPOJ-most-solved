@@ -1,0 +1,19 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 0;
+
+
+
+int main(){
+
+    ll t;cin>>t;
+    while(t--){
+        ll n,p;
+        cin>>n>>p;  //in all cases, the beginning move decides the winner
+        
+        if(p == 0){cout<<"Airborne wins.\n";}
+        else{cout<<"Pagfloyd wins.\n";}
+    }
+      
+}
