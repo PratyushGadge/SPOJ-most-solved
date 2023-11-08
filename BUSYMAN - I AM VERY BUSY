@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 0;
+
+bool ord(pair<int,int> p1,pair<int,int> p2){
+    if(p1.second == p2.second){return p1.first<p2.first;}
+    return p1.second<p2.second;
+}
+
+int busy(vector<pair<int,int>> &v,int *dp,int n,int index){
+    
+    if(index == n-1){return dp[index] = 1;}
+    if(dp[index]){return dp[index];}
+    
+    int ptr = index; bool ch = false;
+    while(v[ptr].first<v[index].second){
+        ptr++;
+        if(ptr == n){
+            ch = true; break;   
+        }
+    }
+    if(ch){return dp[index] = busy(v,dp,n,index+1);}
+    return dp[index] = max(busy(v,dp,n,index+1),busy(v,dp,n,ptr)+1);
+    
+}
+
+int main(){
+    
+    int t;cin>>t;
+    
+    while(t--){
+        
+        int n;cin>>n;
+        vector<pair<int,int>> v;
+        int dp[n] = {};
+        for(int i = 0;i<n;i++){pair<int,int> p;cin>>p.first>>p.second; v.push_back(p);}
+
+        sort(v.begin(),v.end(),ord);
+        
+        cout<<busy(v,dp,n,0)<<"\n";
+        
+    }
+}
