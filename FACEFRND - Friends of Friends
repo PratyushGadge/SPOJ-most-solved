@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 1e5;
+
+bool visited[N];
+
+int main(){
+    
+    int n;cin>>n;
+    int op = 0;
+    for(int i = 0;i<n;i++){
+        int f; cin>>f;
+        if(visited[f]){op--;}
+        visited[f] = true;
+        int nf;cin>>nf;
+        while(nf--){
+            int x;cin>>x;
+            if(!visited[x]){op++; visited[x] = true;}
+        }
+    }
+    cout<<op<<"\n";
+      
+}
