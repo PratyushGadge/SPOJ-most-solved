@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 1e5;
+
+int main(){
+    
+    int t;cin>>t;
+    while(t--){
+        ll a,b;
+        cin>>a>>b;
+        int gcd = __gcd(a,b);
+        cout<<b/gcd<<" "<<a/gcd<<"\n";
+    }
+
+}
