@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 0;
+const int inf = INT_MAX;
+
+queue<pair<int,int>> q;
+
+void dfs(int R,int C,int arr[182][182]){
+    
+    if(q.empty()){return;}
+    int r,c;
+    r = (q.front()).first;
+    c = (q.front()).second;
+    int val = arr[r][c];
+    
+    if(c<C-1){ 
+        if( arr[r][c+1] > val+1){q.push({r,c+1}); arr[r][c+1] = val+1;} 
+    }
+    if(c>0){
+        if( arr[r][c-1] > val+1 ){q.push({r,c-1}); arr[r][c-1] = val+1;}
+    }
+    if(r<R-1){ 
+        if( arr[r+1][c] > val+1 ){q.push({r+1,c}); arr[r+1][c] = val+1;} 
+    }
+    if(r>0){
+        if( arr[r-1][c] > val+1 ){q.push({r-1,c}); arr[r-1][c] = val+1;}
+    }
+    q.pop();
+    dfs(R,C,arr);
+    
+}
+
+int main(){
+
+    int arr[182][182];
+    int t;scanf("%d", &t);
+    while(t--){
+        
+        int r,c;
+        char ch;
+        scanf("%d%d%c", &r, &c, &ch);
+        
+        for(int i = 0;i<r;i++){
+            for(int j = 0;j<c;j++){
+                scanf("%c",&ch);
+                int val = ch-'0';
+                if(val == 0){arr[i][j] = inf;}
+                else{ arr[i][j] = 0; q.push({i,j}); }
+            }scanf("%c",&ch);
+        }
+        
+        dfs(r,c,arr);
+        
+        for(int i = 0;i<r;i++){
+            for(int j = 0;j<c;j++){cout<<arr[i][j]<<" ";}cout<<"\n";
+        }
+        
+    }
+
+} 
