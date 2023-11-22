@@ -1,0 +1,93 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 0;
+const int inf = INT_MAX;
+
+
+void bfs(queue<pair<int,int>> &q, pair<int,int>p, bool (&visited)[8][8] , int &op){  
+    
+    if(q.front().first == 10){q.pop(); q.push({10,10}); op++;}
+    int r,c;
+    r = (q.front()).first;
+    c = (q.front()).second;
+    
+    
+    if(r+2<=7 && c+1<=7){ 
+        if( !visited[r+2][c+1] ){
+            visited[r+2][c+1] = true; q.push({r+2,c+1});
+            if(p.first == r+2 && p.second == c+1){return;}
+        } 
+    }
+    if(r+1<=7 && c+2<=7){
+        if( !visited[r+1][c+2] ){
+            visited[r+1][c+2] = true; q.push({r+1,c+2});
+            if(p.first == r+1 && p.second == c+2){return;}
+        }
+    }
+    if(r-1>=0 && c+2<=7){
+        if( !visited[r-1][c+2] ){
+            visited[r-1][c+2] = true; q.push({r-1,c+2});
+            if(p.first == r-1 && p.second == c+2){return;}
+        }
+    }
+    if(r-2>=0 && c+1<=7){
+        if( !visited[r-2][c+1] ){
+            visited[r-2][c+1] = true; q.push({r-2,c+1});
+            if(p.first == r-2 && p.second == c+1){return;}
+        }
+    }
+    if(r-2>=0 && c-1>=0){
+        if( !visited[r-2][c-1] ){
+            visited[r-2][c-1] = true; q.push({r-2,c-1});
+            if(p.first == r-2 && p.second == c-1){return;}
+        }
+    }
+    if(r-1>=0 && c-2>=0){
+        if( !visited[r-1][c-2] ){
+            visited[r-1][c-2] = true; q.push({r-1,c-2});
+            if(p.first == r-1 && p.second == c-2){return;}
+        }
+    }
+    if(r+1<=7 && c-2>=0){
+        if( !visited[r+1][c-2] ){
+            visited[r+1][c-2] = true; q.push({r+1,c-2});
+            if(p.first == r+1 && p.second == c-2){return;}
+        }
+    }
+    if(r+2<=7 && c-1>=0){
+        if( !visited[r+2][c-1] ){
+            visited[r+2][c-1] = true; q.push({r+2,c-1});
+            if(p.first == r+2 && p.second == c-1){return;}
+        }
+    }
+    q.pop();
+    bfs(q,p,visited,op);
+    
+}
+
+int main(){
+
+    char space,nline;
+    string sin,sout;
+    int t; cin>>t; 
+    
+    while(t--){
+        
+        cin>>sin;
+        cin>>sout;
+        if(sin == sout){cout<<0<<"\n"; continue;}
+        
+        queue<pair<int,int>> q;
+        q.push({sin[0]-'a',sin[1]-'1'}); q.push({10,10});       
+        bool visited[8][8] = {};
+        visited[sin[0]-'a'][sin[1]-'1'] = true;
+        pair<int,int> p = {sout[0]-'a',sout[1]-'1'};
+        int op = 0;
+        bfs(q,p,visited,op);
+        
+        cout<<op+1<<"\n";      
+        
+    }
+
+}
