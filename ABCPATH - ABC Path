@@ -1,0 +1,82 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 0;
+const int inf = INT_MAX;
+
+char arr[55][55];
+bool visited[55][55];
+queue<pair<int,int>> q;
+
+void bfs(int R,int C, int &op){  
+    
+    if(q.empty()){return;}
+    if(q.front().first == 100){
+        q.pop(); op++;
+        if(q.empty()){return;}
+        q.push({100,100}); 
+    }
+    int r,c;
+    r = (q.front()).first;
+    c = (q.front()).second;
+    char next_char = arr[r][c]+1;
+    
+    if(c+1<=C-1){ 
+        if( arr[r][c+1] == next_char && !visited[r][c+1]){q.push({r,c+1}); visited[r][c+1] = true;} 
+    }
+    if(c-1>=0){
+        if( arr[r][c-1] == next_char && !visited[r][c-1] ){q.push({r,c-1}); visited[r][c-1] = true;}
+    }
+    if(r+1<=R-1){ 
+        if( arr[r+1][c] == next_char && !visited[r+1][c]){q.push({r+1,c}); visited[r+1][c] = true;} 
+    }
+    if(r-1>=0){
+        if( arr[r-1][c] == next_char && !visited[r-1][c]){q.push({r-1,c}); visited[r-1][c] = true;}
+    }
+    if(r-1>=0 && c-1>=0){
+        if( arr[r-1][c-1] == next_char && !visited[r-1][c-1]){q.push({r-1,c-1}); visited[r-1][c-1] = true;}
+    }
+    if(r-1>=0 && c+1<=C-1){
+        if( arr[r-1][c+1] == next_char && !visited[r-1][c+1]){q.push({r-1,c+1}); visited[r-1][c+1] = true;}
+    }
+    if(r+1<=R-1 && c+1<=C-1){
+        if( arr[r+1][c+1] == next_char && !visited[r+1][c+1]){q.push({r+1,c+1}); visited[r+1][c+1] = true;}
+    }
+    if(r+1<=R-1 && c-1>=0){
+        if( arr[r+1][c-1] == next_char && !visited[r+1][c-1]){q.push({r+1,c-1}); visited[r+1][c-1] = true;}
+    }
+    q.pop();
+    bfs(R,C,op);
+    
+}
+
+int main(){
+
+    int R,C;
+    cin>>R>>C;
+    int cas = 1;
+    while(C!=0){
+
+        for(int i = 0;i<R;i++){
+            for(int j = 0;j<C;j++){
+                char ch; cin>>ch;
+                arr[i][j] = ch;
+                if(ch == 'A'){q.push({i,j}); visited[i][j] = true;}
+                else{visited[i][j] = false;}
+            }
+        }
+        if(q.empty()){
+            cout<<"Case "<<cas<<": "<<0<<"\n";
+            cas++;
+            cin>>R>>C;
+            continue;
+        }
+        q.push({100,100});
+        int op = 0;
+        bfs(R,C,op);
+        cout<<"Case "<<cas<<": "<<op<<"\n";
+        cas++;
+        cin>>R>>C;
+    }    
+
+}
