@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll =long long;
+const int N = 0;
+const int inf = INT_MAX;
+
+
+
+int main(){
+
+    int t;cin>>t;
+    while(t--){
+        
+        int a,b;
+        char bs;
+        char bl;
+        scanf("%d",&a); scanf("%c",&bs); scanf("%d",&b); scanf("%c",&bl);
+        int op = 0;
+        int l = __gcd(a,b);
+        float sq1 = sqrt(l);
+        int sq = sqrt(l); bool ch = false;
+        if(sq1 == sq){ch = true;}
+        for(int i = 1;i<=sq;i++){
+            if(l%i == 0){op++;}
+        }
+        if(ch){printf("%d\n",2*op-1);}
+        else{printf("%d\n",2*op);}
+        
+    }
+      
+}   
